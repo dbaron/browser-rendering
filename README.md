@@ -10,6 +10,8 @@ What I call the rendering pipeline is about what happens between that DOM tree a
 
 This story is written for people who develop applications on the Web platform.  While the Web platform was originally designed for documents, it has evolved into a platform for applications.  My hope is that understanding how the rendering pipeline works will help authors understand how to build more efficient applications:  applications that run faster, respond faster, and use less power.
 
+Before I begin, though, I should make a brief note about my perspective.  I work on Gecko, the layout engine used in Firefox and other [Mozilla](https://www.mozilla.org/) products, which is one of the three major layout engines for Web browsers being actively developed today.  The other two are [WebKit](http://www.webkit.org/), which is used in Safari and Chrome, and [Trident](http://en.wikipedia.org/wiki/Trident_%28layout_engine%29), which is used in Microsoft Internet Explorer.  Many of the things I say here apply across layout engines, but quite a few are specific to Gecko, and I don't always know which are which, though I attempt to be clear when I do.
+
 ## The rendering pipeline without optimization ##
 
 TODO: write
