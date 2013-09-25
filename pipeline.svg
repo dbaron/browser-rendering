@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="slides.css" ?>
+<svg class="pipeline" xmlns="http://www.w3.org/2000/svg" style="display:block; height: 100%; width: 100%; font-size: 36px; stroke-width: 5px;" preserveAspectRatio="xMidYMin meet"
+     viewBox="0 0 1550 550">
+	<rect x="0" y="0" width="1550" height="550" fill="white" />
+
+	<g marker-end="url(slides-res.svg#Arrowhead)" stroke="black" stroke-width="5px" fill="none">
+		<line x1="250" y1="100" x2="433" y2="100" /> <!-- Markup parse Content -->
+		<line x1="650" y1="100" x2="883" y2="100" /> <!-- Content construct Frames -->
+		<line x1="1150" y1="100" x2="1342" y2="100" /> <!-- Frames paint Graphics -->
+		<path d="M 975 200 C 650 350 1400 350 1050 212" /> <!-- Frames reflow Frames -->
+		<line x1="250" y1="300" x2="283" y2="300" /> <!-- Script Script -->
+		<line x1="450" y1="475" x2="483" y2="475" /> <!-- CSS CSS -->
+		<path d="M 450 310 Q 550 310 600 435" /> <!-- Script CSSOM CSS -->
+		<path d="M 450 290 Q 550 290 600 165" /> <!-- Script DOM Content -->
+		<path d="M 650 475 Q 775 475 775 175" /> <!-- CSS construct -->
+	</g>
+
+	<rect class="resource" x="50" y="50" width="200" height="100" />
+	<text x="150" y="75" text-anchor="middle" dominant-baseline="middle">HTML, SVG,</text>
+	<text x="150" y="125" text-anchor="middle" dominant-baseline="middle">XHTML, etc.</text>
+
+	<ellipse class="algorithm" cx="350" cy="100" rx="2em" ry="0.8em" />
+	<text x="350" y="100" text-anchor="middle" dominant-baseline="middle">parse</text>
+
+	<rect class="data" x="450" y="50" width="200" height="100" />
+	<text x="550" y="75" text-anchor="middle" dominant-baseline="middle">Content Tree</text>
+	<text x="550" y="125" text-anchor="middle" dominant-baseline="middle">/ DOM Tree</text>
+
+	<ellipse class="algorithm" cx="775" cy="100" rx="2.5em" ry="1.6em" />
+	<text x="775" y="80" text-anchor="middle" dominant-baseline="middle">construct</text>
+	<text x="775" y="110" font-size="0.65em" text-anchor="middle" dominant-baseline="middle">(incl. Selector</text>
+	<text x="775" y="130" font-size="0.65em" text-anchor="middle" dominant-baseline="middle">Matching)</text>
+
+	<rect class="data" x="900" y="50" width="250" height="150" />
+	<text x="1025" y="75" text-anchor="middle" dominant-baseline="middle">Rendering Tree</text>
+	<text x="1025" y="125" text-anchor="middle" dominant-baseline="middle">/ Frame Tree</text>
+	<text x="1025" y="175" text-anchor="middle" dominant-baseline="middle">(incl. Style)</text>
+
+	<ellipse class="algorithm" cx="1025" cy="300" rx="2.5em" ry="1.6em" />
+	<text x="1025" y="275" text-anchor="middle" dominant-baseline="middle">reflow</text>
+	<text x="1025" y="325" text-anchor="middle" dominant-baseline="middle">/ layout</text>
+
+	<ellipse class="algorithm" cx="1250" cy="100" rx="2em" ry="0.8em" />
+	<text x="1250" y="100" text-anchor="middle" dominant-baseline="middle">paint</text>
+
+	<ellipse class="api" cx="1450" cy="100" rx="2.5em" ry="1.6em" />
+	<text x="1450" y="75" text-anchor="middle" dominant-baseline="middle">Graphics</text>
+	<text x="1450" y="125" text-anchor="middle" dominant-baseline="middle">API</text>
+
+	<rect class="data" x="300" y="275" width="150" height="50" />
+	<text x="375" y="300" text-anchor="middle" dominant-baseline="middle">Script</text>
+
+	<rect class="resource" x="100" y="275" width="150" height="50" />
+	<text x="175" y="300" text-anchor="middle" dominant-baseline="middle">Script</text>
+
+	<rect class="data" x="500" y="450" width="150" height="50" />
+	<text x="575" y="475" text-anchor="middle" dominant-baseline="middle">CSS</text>
+
+	<rect class="resource" x="300" y="450" width="150" height="50" />
+	<text x="375" y="475" text-anchor="middle" dominant-baseline="middle">CSS</text>
+
+	<ellipse cx="550" cy="225" rx="2.5em" ry="0.8em" class="api" />
+	<text x="550" y="225" text-anchor="middle" dominant-baseline="middle">DOM API</text>
+
+	<ellipse cx="550" cy="375" rx="3em" ry="0.8em" class="api" />
+	<text x="550" y="375" text-anchor="middle" dominant-baseline="middle">CSSOM API</text>
+
+</svg>

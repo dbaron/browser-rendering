@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<marker id="Arrowhead" viewBox="0 0 10 10" refX="2.5" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="4" orient="auto">
+			<polyline points="0,0 10,5 0,10 2,5" fill="currentColor" />
+		</marker>
+		<marker id="StartArrowhead" viewBox="0 0 10 10" refX="2.5" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="4" orient="auto">
+			<polyline points="10,0 0,5 10,10 8,5" fill="currentColor" />
+		</marker>
+		<marker id="Arrowhead2" viewBox="0 0 10 10" refX="2.5" refY="5" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" orient="auto">
+			<polyline points="0,0 10,5 0,10 2,5" fill="currentColor" />
+		</marker>
+	</defs>
+</svg>

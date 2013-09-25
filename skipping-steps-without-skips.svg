@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:block; height: 100%; width: 100%; font-size: 50px; font-weight: bold; stroke-width: 5px;" preserveAspectRatio="xMidYMin meet"
+     viewBox="0 0 1650 400">
+	<rect x="0" y="0" width="1500" height="1000" fill="white" />
+
+	<rect x="25" y="100" width="250" height="100" fill="fuchsia" stroke="black" />
+	<text x="150" y="150" text-anchor="middle" dominant-baseline="middle">Content</text>
+
+	<rect x="350" y="75" width="300" height="150" fill="yellow" stroke="black" />
+	<text x="500" y="120" text-anchor="middle" dominant-baseline="middle">Compute</text>
+	<text x="500" y="180" text-anchor="middle" dominant-baseline="middle">style</text>
+
+	<rect x="725" y="75" width="300" height="150" fill="yellow" stroke="black" />
+	<text x="875" y="120" text-anchor="middle" dominant-baseline="middle">Construct</text>
+	<text x="875" y="180" text-anchor="middle" dominant-baseline="middle">frames</text>
+
+	<rect x="1100" y="100" width="250" height="100" fill="yellow" stroke="black" />
+	<text x="1225" y="150" text-anchor="middle" dominant-baseline="middle">Layout</text>
+
+	<rect x="1425" y="100" width="200" height="100" fill="yellow" stroke="black" />
+	<text x="1525" y="150" text-anchor="middle" dominant-baseline="middle">Paint</text>
+
+	<g marker-end="url(slides-res.svg#Arrowhead2)" color="black" stroke="currentColor" stroke-width="10" fill="none">
+		<path d="M 275 150 l 55 0" />
+		<path d="M 650 150 l 55 0" />
+		<path d="M 1025 150 l 55 0" />
+		<path d="M 1350 150 l 55 0" />
+	</g>
+
+	<text x="690" y="350" text-anchor="middle" dominant-baseline="middle">Now shown separately</text>
+
+	<g marker-end="url(slides-res.svg#Arrowhead2)" color="black" stroke="currentColor" stroke-width="7" fill="none">
+		<path d="M 650 330 l -20 -80" />
+		<path d="M 730 330 l 20 -80" />
+	</g>
+
+</svg>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:block; height: 100%; width: 100%; font-size: 80px; stroke-width: 5px;" preserveAspectRatio="xMidYMin meet"
+     viewBox="0 -400 2400 1600">
+	<rect x="0" y="-400" width="2400" height="1600" fill="white" />
+	<g style="stroke-width: 10px; stroke: black;">
+		<line x1="750" y1="100" x2="300" y2="300" />
+		<line x1="750" y1="100" x2="750" y2="-100" />
+		<line x1="750" y1="100" x2="900" y2="300" />
+		<line x1="300" y1="300" x2="300" y2="500" />
+		<line x1="300" y1="500" x2="300" y2="700" />
+		<line x1="900" y1="300" x2="900" y2="500" />
+		<line x1="900" y1="500" x2="700" y2="700" />
+		<line x1="900" y1="500" x2="1100" y2="700" />
+		<line x1="550" y1="900" x2="700" y2="700" />
+		<line x1="1200" y1="900" x2="1100" y2="700" />
+	</g>
+
+	<text x="750" y="-300" text-anchor="middle" dominant-baseline="middle">Content Tree / DOM Tree</text>
+	<text x="1875" y="-300" text-anchor="middle" dominant-baseline="middle">Frame Tree / Rendering Tree</text>
+
+	<ellipse cx="750" cy="-100" rx="3.5em" ry="0.8em" fill="orange" stroke="black" />
+	<text x="750" y="-100" text-anchor="middle" dominant-baseline="middle">Document</text>
+
+	<ellipse cx="750" cy="100" rx="2em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="750" y="100" text-anchor="middle" dominant-baseline="middle">html</text>
+
+	<ellipse cx="300" cy="300" rx="2em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="300" y="300" text-anchor="middle" dominant-baseline="middle">head</text>
+
+	<ellipse cx="900" cy="300" rx="2em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="900" y="300" text-anchor="middle" dominant-baseline="middle">body</text>
+
+	<ellipse cx="300" cy="500" rx="2em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="300" y="500" text-anchor="middle" dominant-baseline="middle">title</text>
+
+	<ellipse cx="300" cy="700" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" />
+	<text x="300" y="700" text-anchor="middle" dominant-baseline="middle">"Web p..."</text>
+
+	<ellipse cx="900" cy="500" rx="1.5em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="900" y="500" text-anchor="middle" dominant-baseline="middle">div</text>
+
+	<ellipse cx="700" cy="700" rx="1em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="700" y="700" text-anchor="middle" dominant-baseline="middle">h1</text>
+
+	<ellipse cx="1100" cy="700" rx="1em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="1100" y="700" text-anchor="middle" dominant-baseline="middle">p</text>
+
+	<ellipse cx="550" cy="900" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" />
+	<text x="550" y="900" text-anchor="middle" dominant-baseline="middle">"Web p..."</text>
+
+	<ellipse cx="1200" cy="900" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" />
+	<text x="1200" y="900" text-anchor="middle" dominant-baseline="middle">"This..."</text>
+
+	<g marker-start="url(slides-res.svg#StartArrowhead)" marker-end="url(slides-res.svg#Arrowhead)" color="black" stroke="currentColor" stroke-width="15" fill="none">
+		<path opacity="0.5" d="M 1730 -100 C 1700 -100 1100 -100 940 40" />
+		<path opacity="0.5" d="M 1820 50 L 960 100" />
+		<path opacity="0.5" d="M 1820 200 C 1700 200 1000 200 940 160" />
+		<path opacity="0.5" d="M 1820 350 L 1110 300" />
+		<path opacity="0.5" d="M 1820 500 L 1070 500" />
+		<path opacity="0.5" d="M 1620 680 C 1400 550 1000 550 820 650" />
+		<path opacity="0.5" d="M 2020 750 C 1800 825 1400 825 1220 750" />
+		<path opacity="0.5" d="M 1800 970 C 1600 1200 700 1200 600 1010" />
+		<path opacity="0.5" d="M 2200 970 C 2000 1200 1300 1200 1200 1010" />
+	</g>
+
+	<!-- the frame tree -->
+
+	<g style="stroke-width: 10px; stroke: black;">
+		<line x1="2000" y1="-100" x2="2000" y2="50" />
+		<line x1="2000" y1="50" x2="2000" y2="200" />
+		<line x1="2000" y1="200" x2="2000" y2="350" />
+		<line x1="2000" y1="350" x2="2000" y2="500" />
+		<line x1="2000" y1="500" x2="1800" y2="700" />
+		<line x1="2000" y1="500" x2="2200" y2="700" />
+		<line x1="1800" y1="700" x2="1800" y2="900" />
+		<line x1="2200" y1="700" x2="2200" y2="900" />
+	</g>
+
+	<rect x="2000" y="-100" transform="translate(-240 -52)" width="6em" height="1.3em" fill="#ff3" stroke="black" />
+	<text x="2000" y="-100" text-anchor="middle" dominant-baseline="middle">Viewport</text>
+
+	<rect x="2000" y="50" transform="translate(-160 -52)" width="4em" height="1.3em" fill="#3ff" stroke="black" />
+	<text x="2000" y="50" text-anchor="middle" dominant-baseline="middle">Scroll</text>
+
+	<rect x="2000" y="200" transform="translate(-160 -52)" width="4em" height="1.3em" fill="#f6f" stroke="black" />
+	<text x="2000" y="200" text-anchor="middle" dominant-baseline="middle">Block</text>
+
+	<rect x="2000" y="350" transform="translate(-160 -52)" width="4em" height="1.3em" fill="#f6f" stroke="black" />
+	<text x="2000" y="350" text-anchor="middle" dominant-baseline="middle">Block</text>
+
+	<rect x="2000" y="500" transform="translate(-160 -52)" width="4em" height="1.3em" fill="#f6f" stroke="black" />
+	<text x="2000" y="500" text-anchor="middle" dominant-baseline="middle">Block</text>
+
+	<rect x="1800" y="700" transform="translate(-160 -52)" width="4em" height="1.3em" fill="#f6f" stroke="black" />
+	<text x="1800" y="700" text-anchor="middle" dominant-baseline="middle">Block</text>
+
+	<rect x="2200" y="700" transform="translate(-160 -52)" width="4em" height="1.3em" fill="#f6f" stroke="black" />
+	<text x="2200" y="700" text-anchor="middle" dominant-baseline="middle">Block</text>
+
+	<rect x="1800" y="900" transform="translate(-160 -52)" width="4em" height="1.3em" fill="#f93" stroke="black" />
+	<text x="1800" y="900" text-anchor="middle" dominant-baseline="middle">Text</text>
+
+	<rect x="2200" y="900" transform="translate(-160 -52)" width="4em" height="1.3em" fill="#f93" stroke="black" />
+	<text x="2200" y="900" text-anchor="middle" dominant-baseline="middle">Text</text>
+
+</svg>
