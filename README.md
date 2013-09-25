@@ -12,6 +12,10 @@ This story is written for people who develop applications on the Web platform.  
 
 Before I begin, though, I should make a brief note about my perspective.  I work on Gecko, the layout engine used in Firefox and other [Mozilla](https://www.mozilla.org/) products, which is one of the three major layout engines for Web browsers being actively developed today.  The other two are [WebKit](http://www.webkit.org/), which is used in Safari and Chrome, and [Trident](http://en.wikipedia.org/wiki/Trident_%28layout_engine%29), which is used in Microsoft Internet Explorer.  Many of the things I say here apply across layout engines, but quite a few are specific to Gecko, and I don't always know which are which, though I attempt to be clear when I do.
 
+
+## Hosting this document on github was an experiment that failed, due to inability to use SVG in markdown.  I need to find a new home for it.  Sorry
+
+
 ## The rendering pipeline without optimization ##
 
 <img src="pipeline.svg" style="display:block; height: 100%; width: 100%; font-size: 80px; stroke-width: 5px;">
