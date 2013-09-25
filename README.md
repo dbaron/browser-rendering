@@ -14,7 +14,7 @@ Before I begin, though, I should make a brief note about my perspective.  I work
 
 ## The rendering pipeline without optimization ##
 
-<object type="image/svg+xml" data="pipeline.svg" style="display:block; height: 100%; width: 100%; font-size: 80px; stroke-width: 5px;" />
+<img src="pipeline.svg" style="display:block; height: 100%; width: 100%; font-size: 80px; stroke-width: 5px;">
 
 ### Parsing
 
@@ -22,22 +22,22 @@ Before I begin, though, I should make a brief note about my perspective.  I work
 
 <tbody><tr><td width="50%">
 
-<object type="image/svg+xml" data="dom-tree-simple-markup.svg" style="display:block; height: 100%; width: 100%" />
+<img src="dom-tree-simple-markup.svg" style="display:block; height: 100%; width: 100%">
 
 </td>
 
 <td width="50%">
-<object type="image/svg+xml" data="dom-tree-simple-tree.svg" style="display:block; height: 100%; width: 100%" />
+<img src="dom-tree-simple-tree.svg" style="display:block; height: 100%; width: 100%">
 </td></tr></tbody>
 </table>
 
-<object type="image/svg+xml" data="dom-tree-moderate.svg" style="display:block; width: 100%" />
+<img src="dom-tree-moderate.svg" style="display:block; width: 100%">
 
 ### Style computation
 
 ### Rendering tree construction
 
-<object type="image/svg+xml" data="frame-tree.svg" style="display:block; width: 100%" />
+<img src="frame-tree.svg" style="display:block; width: 100%">
 
 ### Layout
 
@@ -53,9 +53,9 @@ TODO: optimizations can and do change
 
 ### Optimization: skipping stages of the pipeline
 
-<object type="image/svg+xml" data="skipping-steps-without-skips.svg" style="display:block; width: 100%" />
+<img src="skipping-steps-without-skips.svg" style="display:block; width: 100%">
 
-<object type="image/svg+xml" data="skipping-steps.svg" style="display:block; width: 100%" />
+<img src="skipping-steps.svg" style="display:block; width: 100%">
 
 <pre>
 &lt;script&gt;
