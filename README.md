@@ -31,7 +31,68 @@ Before I begin, though, I should make a brief note about my perspective.  I work
 </td></tr></tbody>
 </table>
 
-<img src="dom-tree-moderate.svg" style="display:block; width: 100%">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:block; height: 100%; width: 100%; font-size: 80px; stroke-width: 5px;" preserveAspectRatio="xMidYMin meet"
+     viewBox="0 0 1700 1400">
+	<rect x="0" y="0" width="1500" height="1000" fill="white" />
+	<g style="stroke-width: 10px; stroke: black;">
+		<line x1="750" y1="100" x2="300" y2="300" />
+		<line x1="750" y1="100" x2="900" y2="300" />
+		<line x1="300" y1="300" x2="300" y2="500" />
+		<line x1="300" y1="500" x2="300" y2="700" />
+		<line x1="900" y1="300" x2="900" y2="500" />
+		<line x1="900" y1="500" x2="700" y2="700" />
+		<line x1="900" y1="500" x2="1100" y2="700" />
+		<line x1="350" y1="900" x2="700" y2="700" />
+		<line x1="1100" y1="700" x2="900" y2="900" />
+		<line x1="1100" y1="700" x2="1300" y2="900" />
+		<line x1="1300" y1="900" x2="1000" y2="1100" />
+		<line x1="1300" y1="900" x2="1500" y2="1100" />
+		<line x1="1500" y1="1100" x2="1400" y2="1300" />
+	</g>
+
+	<ellipse cx="750" cy="100" rx="2em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="750" y="100" text-anchor="middle" dominant-baseline="middle">html</text>
+
+	<ellipse cx="300" cy="300" rx="2em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="300" y="300" text-anchor="middle" dominant-baseline="middle">head</text>
+
+	<ellipse cx="900" cy="300" rx="2em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="900" y="300" text-anchor="middle" dominant-baseline="middle">body</text>
+
+	<ellipse cx="300" cy="500" rx="2em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="300" y="500" text-anchor="middle" dominant-baseline="middle">title</text>
+
+	<ellipse cx="300" cy="700" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" />
+	<text x="300" y="700" text-anchor="middle" dominant-baseline="middle">"Web p..."</text>
+
+	<ellipse cx="900" cy="500" rx="1.5em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="900" y="500" text-anchor="middle" dominant-baseline="middle">div</text>
+
+	<ellipse cx="700" cy="700" rx="1em" ry="0.8em" fill="aqua" stroke="black" />
+	<text x="700" y="700" text-anchor="middle" dominant-baseline="middle">h1</text>
+
+	<ellipse cx="350" cy="900" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" />
+	<text x="350" y="900" text-anchor="middle" dominant-baseline="middle">"Web p..."</text>
+
+	<ellipse cx="1100" cy="700" rx="2em" ry="0.8em" fill="lime" stroke="black" />
+	<text x="1100" y="700" text-anchor="middle" dominant-baseline="middle">svg</text>
+
+	<ellipse cx="900" cy="900" rx="2em" ry="0.8em" fill="lime" stroke="black" />
+	<text x="900" y="900" text-anchor="middle" dominant-baseline="middle">line</text>
+
+	<ellipse cx="1300" cy="900" rx="1em" ry="0.8em" fill="lime" stroke="black" />
+	<text x="1300" y="900" text-anchor="middle" dominant-baseline="middle">g</text>
+
+	<ellipse cx="1000" cy="1100" rx="3em" ry="0.8em" fill="lime" stroke="black" />
+	<text x="1000" y="1100" text-anchor="middle" dominant-baseline="middle">ellipse</text>
+
+	<ellipse cx="1500" cy="1100" rx="2em" ry="0.8em" fill="lime" stroke="black" />
+	<text x="1500" y="1100" text-anchor="middle" dominant-baseline="middle">text</text>
+
+	<ellipse cx="1400" cy="1300" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" />
+	<text x="1400" y="1300" text-anchor="middle" dominant-baseline="middle">"This..."</text>
+
+</svg>
 
 ### Style computation
 
