@@ -16,6 +16,14 @@ Before I begin, though, I should make a brief note about my perspective.  I work
 
 TODO: write
 
+### Style computation
+
+### Rendering tree construction
+
+### Layout
+
+### Painting
+
 ## Optimizations ##
 
 ### Optimization: skipping stages of the pipeline
@@ -40,3 +48,7 @@ TODO: figure out how I want to talk about graphics acceleration (e.g., if it fit
 - using capabilities of the hardware
 - doing drawing operations to a surface using its capabilities at some level of abstraction
 - caching (surfaces, patterns, etc.)
+
+## Further material
+
+Since I haven't made much progress on writing this so far, it's worth noting that one of my main sources is going to be turning a talk I gave at SXSW on 2012-03-11 into written form.  This talk was /Fast CSS: How Browsers Lay Out Web Pages/: <a href="http://dbaron.org/talks/2012-03-11-sxsw/slide-1.xhtml">slideshow</a>, <a href="http://dbaron.org/talks/2012-03-11-sxsw/master.xhtml">all slides</a>, <a href="http://audio.sxsw.com/2012/podcasts/11-ACC-Fast_CSS_How_Browser_Layout.mp3">audio (MP3)</a>, <a href="http://schedule.sxsw.com/2012/events/event_IAP12909">Session page</a>, <a href="http://lanyrd.com/2012/sxsw-interactive/spmbt/">Lanyrd page</a>.
