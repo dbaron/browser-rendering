@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset=UTF-8>
+  <title>How browser rendering works</title>
+</head>
+<body>
+<h1><a id="user-content-how-browser-rendering-works" class="anchor" href="#how-browser-rendering-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How browser rendering works</h1>
+
+<p>by <a href="http://dbaron.org">L. David Baron</a></p>
+
+<p><a href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" src="https://camo.githubusercontent.com/7eca67662b122369d4fa89f2b17715d578cb979a/687474703a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792d73612f332e302f38307831352e706e67" data-canonical-src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" style="max-width:100%;"></a><br>This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
+
+<p>This is the story of how Web browsers work.  Really, it's just about how a part of Web browsers work:  what I'll call the rendering pipeline.  There are many other interesting parts of Web browsers.  Browsers download resources from the network and do crytography.  Browsers parse HTML into a DOM tree (or content tree), which is just an in-memory representation of the tree structure that the HTML markup represents.  Browsers execute JavaScript, which is a programming language, and allow that JavaScript to call APIs that are part of the Web platform.</p>
+
+<p>What I call the rendering pipeline is about what happens between that DOM tree and the screen.  This is the story of how CSS style sheets are processed, how the DOM tree is combined with those style sheets to build a rendering tree (or box tree), how the positions and sizes of the nodes in that tree are calculated, and how the result is painted to the screen.  It is the story of how all of those pieces are optimized so that it's possible to build efficient applications.</p>
+
+<p>This story is written for people who develop applications on the Web platform.  While the Web platform was originally designed for documents, it has evolved into a platform for applications.  My hope is that understanding how the rendering pipeline works will help authors understand how to build more efficient applications:  applications that run faster, respond faster, and use less power.</p>
+
+<p>Before I begin, though, I should make a brief note about my perspective.  I work on Gecko, the layout engine used in Firefox and other <a href="https://www.mozilla.org/">Mozilla</a> products, which is one of the three major layout engines for Web browsers being actively developed today.  The other two are <a href="http://www.webkit.org/">WebKit</a>, which is used in Safari and Chrome, and <a href="http://en.wikipedia.org/wiki/Trident_%28layout_engine%29">Trident</a>, which is used in Microsoft Internet Explorer.  Many of the things I say here apply across layout engines, but quite a few are specific to Gecko, and I don't always know which are which, though I attempt to be clear when I do.</p>
+
+<h2>
+<a id="user-content-hosting-this-document-on-github-was-an-experiment-that-failed-due-to-inability-to-use-svg-in-markdown--i-need-to-find-a-new-home-for-it--sorry--though-maybe-i-should-try-github-pages-see-github-pages-and-tabs-blog-post" class="anchor" href="#hosting-this-document-on-github-was-an-experiment-that-failed-due-to-inability-to-use-svg-in-markdown--i-need-to-find-a-new-home-for-it--sorry--though-maybe-i-should-try-github-pages-see-github-pages-and-tabs-blog-post" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hosting this document on github was an experiment that failed, due to inability to use SVG in markdown.  I need to find a new home for it.  Sorry.  (Though, maybe I should try github-pages; see <a href="https://help.github.com/articles/what-are-github-pages/">GitHub Pages</a> and <a href="http://www.xanthir.com/b4Zz0">Tab's blog post</a>.</h2>
+
+<h2>
+<a id="user-content-the-rendering-pipeline-without-optimization" class="anchor" href="#the-rendering-pipeline-without-optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>The rendering pipeline without optimization</h2>
+
+<p><a href="/dbaron/browser-rendering/blob/gh-pages/pipeline.svg" target="_blank"><img src="/dbaron/browser-rendering/raw/gh-pages/pipeline.svg" style="max-width:100%;"></a></p>
+
+<h3>
+<a id="user-content-parsing" class="anchor" href="#parsing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parsing</h3>
+
+<table border="border" width="100%">
+
+<tbody><tr>
+<td width="50%">
+
+<a href="/dbaron/browser-rendering/blob/gh-pages/dom-tree-simple-markup.svg" target="_blank"><img src="/dbaron/browser-rendering/raw/gh-pages/dom-tree-simple-markup.svg" style="max-width:100%;"></a>
+
+</td>
+
+<td width="50%">
+<a href="/dbaron/browser-rendering/blob/gh-pages/dom-tree-simple-tree.svg" target="_blank"><img src="/dbaron/browser-rendering/raw/gh-pages/dom-tree-simple-tree.svg" style="max-width:100%;"></a>
+</td>
+</tr></tbody>
+</table>
+
+<p>
+    
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </p>
+
+<pre><code>&lt;ellipse cx="750" cy="100" rx="2em" ry="0.8em" fill="aqua" stroke="black" /&gt;
+&lt;text x="750" y="100" text-anchor="middle" dominant-baseline="middle"&gt;html&lt;/text&gt;
+
+&lt;ellipse cx="300" cy="300" rx="2em" ry="0.8em" fill="aqua" stroke="black" /&gt;
+&lt;text x="300" y="300" text-anchor="middle" dominant-baseline="middle"&gt;head&lt;/text&gt;
+
+&lt;ellipse cx="900" cy="300" rx="2em" ry="0.8em" fill="aqua" stroke="black" /&gt;
+&lt;text x="900" y="300" text-anchor="middle" dominant-baseline="middle"&gt;body&lt;/text&gt;
+
+&lt;ellipse cx="300" cy="500" rx="2em" ry="0.8em" fill="aqua" stroke="black" /&gt;
+&lt;text x="300" y="500" text-anchor="middle" dominant-baseline="middle"&gt;title&lt;/text&gt;
+
+&lt;ellipse cx="300" cy="700" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" /&gt;
+&lt;text x="300" y="700" text-anchor="middle" dominant-baseline="middle"&gt;"Web p..."&lt;/text&gt;
+
+&lt;ellipse cx="900" cy="500" rx="1.5em" ry="0.8em" fill="aqua" stroke="black" /&gt;
+&lt;text x="900" y="500" text-anchor="middle" dominant-baseline="middle"&gt;div&lt;/text&gt;
+
+&lt;ellipse cx="700" cy="700" rx="1em" ry="0.8em" fill="aqua" stroke="black" /&gt;
+&lt;text x="700" y="700" text-anchor="middle" dominant-baseline="middle"&gt;h1&lt;/text&gt;
+
+&lt;ellipse cx="350" cy="900" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" /&gt;
+&lt;text x="350" y="900" text-anchor="middle" dominant-baseline="middle"&gt;"Web p..."&lt;/text&gt;
+
+&lt;ellipse cx="1100" cy="700" rx="2em" ry="0.8em" fill="lime" stroke="black" /&gt;
+&lt;text x="1100" y="700" text-anchor="middle" dominant-baseline="middle"&gt;svg&lt;/text&gt;
+
+&lt;ellipse cx="900" cy="900" rx="2em" ry="0.8em" fill="lime" stroke="black" /&gt;
+&lt;text x="900" y="900" text-anchor="middle" dominant-baseline="middle"&gt;line&lt;/text&gt;
+
+&lt;ellipse cx="1300" cy="900" rx="1em" ry="0.8em" fill="lime" stroke="black" /&gt;
+&lt;text x="1300" y="900" text-anchor="middle" dominant-baseline="middle"&gt;g&lt;/text&gt;
+
+&lt;ellipse cx="1000" cy="1100" rx="3em" ry="0.8em" fill="lime" stroke="black" /&gt;
+&lt;text x="1000" y="1100" text-anchor="middle" dominant-baseline="middle"&gt;ellipse&lt;/text&gt;
+
+&lt;ellipse cx="1500" cy="1100" rx="2em" ry="0.8em" fill="lime" stroke="black" /&gt;
+&lt;text x="1500" y="1100" text-anchor="middle" dominant-baseline="middle"&gt;text&lt;/text&gt;
+
+&lt;ellipse cx="1400" cy="1300" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" /&gt;
+&lt;text x="1400" y="1300" text-anchor="middle" dominant-baseline="middle"&gt;"This..."&lt;/text&gt;
+</code></pre>
+
+<p></p>
+
+<h3>
+<a id="user-content-style-computation" class="anchor" href="#style-computation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style computation</h3>
+
+<h3>
+<a id="user-content-rendering-tree-construction" class="anchor" href="#rendering-tree-construction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rendering tree construction</h3>
+
+<p><a href="/dbaron/browser-rendering/blob/gh-pages/frame-tree.svg" target="_blank"><img src="/dbaron/browser-rendering/raw/gh-pages/frame-tree.svg" style="max-width:100%;"></a></p>
+
+<h3>
+<a id="user-content-layout" class="anchor" href="#layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layout</h3>
+
+<h3>
+<a id="user-content-painting" class="anchor" href="#painting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Painting</h3>
+
+<h2>
+<a id="user-content-optimizations" class="anchor" href="#optimizations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimizations</h2>
+
+<p>TODO: Unoptimized view of world:  redo everything for each DOM or style change</p>
+
+<p>TODO: (Alternate view:  cache nothing, and redo everything each repaint)</p>
+
+<p>TODO: optimizations can and do change</p>
+
+<h3>
+<a id="user-content-optimization-skipping-stages-of-the-pipeline" class="anchor" href="#optimization-skipping-stages-of-the-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimization: skipping stages of the pipeline</h3>
+
+<p><a href="/dbaron/browser-rendering/blob/gh-pages/skipping-steps-without-skips.svg" target="_blank"><img src="/dbaron/browser-rendering/raw/gh-pages/skipping-steps-without-skips.svg" style="max-width:100%;"></a></p>
+
+<p><a href="/dbaron/browser-rendering/blob/gh-pages/skipping-steps.svg" target="_blank"><img src="/dbaron/browser-rendering/raw/gh-pages/skipping-steps.svg" style="max-width:100%;"></a></p>
+
+<pre>
+&lt;script&gt;
+  div.setAttribute("data-rating", "excellent");
+&lt;/script&gt;
+</pre>
+
+<p>Browsers can check whether there are selectors that care about this attribute, and as a result not even compute style.</p>
+
+<pre>
+&lt;script&gt;
+  div.setAttribute("data-rating", "excellent");
+&lt;/script&gt;
+&lt;style&gt;
+  #list div[data-rating="excellent"] {
+    background: yellow; color: black;
+  }
+&lt;/style&gt;
+</pre>
+
+<p>Now there are selectors, so we have to rerun selector matching.  But if the div isn't inside an element with <code>id="list"</code>, nothing changed.</p>
+
+<pre>
+&lt;script&gt;
+  div.setAttribute("data-rating", "excellent");
+&lt;/script&gt;
+&lt;style&gt;
+  div[data-rating="excellent"] {
+    background: yellow; color: black;
+  }
+&lt;/style&gt;
+</pre>
+
+<p>Now the rerunning of selector matching actually makes a new rule match that didn't before.</p>
+
+<ul class="task-list">
+<li>Some properties that make us reconstruct frames / rendering objects:</li>
+<li>* display</li>
+<li>* position</li>
+<li>* float (from/to 'none')</li>
+<li>* transform (from/to 'none')</li>
+<li>* column-*</li>
+<li>* counter-*</li>
+<li>* quotes</li>
+<li>Some properties that make us reflow / lay out again</li>
+<li>* width</li>
+<li>* height</li>
+<li>* font-*</li>
+<li>* margin-*</li>
+<li>* padding-*</li>
+<li>* border-*-width</li>
+<li>* letter-spacing</li>
+<li>* word-spacing</li>
+<li>* line-height</li>
+<li>Some properties that make us repaint</li>
+<li>* color</li>
+<li>* background-*</li>
+<li>* border-*-color</li>
+<li>* z-index</li>
+<li>Some properties that have custom optimizations</li>
+<li>* transform</li>
+<li>* cursor</li>
+</ul>
+
+<p>Or maybe nothing changed:</p>
+
+<pre>
+p { background: yellow }
+p:hover { background: yellow }
+</pre>
+
+<p>TODO: write</p>
+
+<h3>
+<a id="user-content-optimization-skipping-part-of-a-stage" class="anchor" href="#optimization-skipping-part-of-a-stage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimization: skipping part of a stage</h3>
+
+<p>TODO: describe stage-specific optimizations</p>
+
+<p>Skipping part of frame construction / rendering tree construction:</p>
+
+<ul class="task-list">
+<li>Reconstructing a frame implies reconstructing all its descendants</li>
+<li>There's a tiny cost resulting from the depth of the tree it's in</li>
+<li>Otherwise cost is mostly proportional to the number of boxes / frames / rendering objects constructed</li>
+</ul>
+
+<pre>&lt;script&gt;
+/* likely Gecko-specific */
+function flush_frames(elt)
+  { getComputedStyle(elt, "").color; }
+var start = Date.now();
+for (var i = 0; i &lt; 10000; ++i) {
+  test_elt.style.display = "none";
+  flush_frames(test_elt);
+  test_elt.style.display = "";
+  flush_frames(test_elt);
+}
+var time = (Date.now() - start);
+&lt;/script&gt;</pre>
+
+<p>Skipping part of reflow:</p>
+
+<ul class="task-list">
+<li>When layout of one element changes, it can move others around</li>
+<li>Reflow / re-layout runs from the top of the tree down to the things it needs to change</li>
+<li>intrinsic width computation a separate issue</li>
+<li>Some properties force relayout of all descendants; some don't</li>
+<li>So cost of layout depends on surroundings</li>
+<li>Experiment with surroundings.</li>
+</ul>
+
+<pre>&lt;script&gt;
+function flush_layout(elt) { elt.offsetTop; }
+var start = Date.now();
+for (var i = 0; i &lt; 10000; ++i) {
+  test_elt.style.fontSize = "1px"; /* or width */
+  flush_frames(test_elt);
+  test_elt.style.fontSize = ""; /* or width */
+  flush_frames(test_elt);
+}
+var time = (Date.now() - start);
+&lt;/script&gt;</pre>
+
+
+
+<p>Skipping part of painting:</p>
+
+<ul class="task-list">
+<li>Repainting an area is about painting a rectangle.</li>
+<li>Harder to measure because browser controls refresh rate</li>
+<li>Some ways to spot very bad cases, but vary based on OS and browser
+&lt;!-- FIXME: better? --&gt;</li>
+</ul>
+
+<h3>
+<a id="user-content-coalescing-multiple-runs-both-general-and-stage-specific" class="anchor" href="#coalescing-multiple-runs-both-general-and-stage-specific" aria-hidden="true"><span class="octicon octicon-link"></span></a>coalescing multiple runs (both general and stage-specific)</h3>
+
+<p>TODO: talk about screen refresh rates</p>
+
+<p>Authors might change the same element twice:</p>
+
+<pre>element.style.position = "absolute";
+element.style.overflow = "auto";</pre>
+
+<p>Authors might make changes where the work needed to handle one subsumes the work for the other:</p>
+
+<pre>element.style.backgroundColor = "blue";
+element.parentNode.style.opacity = "0.8";</pre>
+
+<p></p>
+
+<p>Browsers don't actually process the changes until:</p>
+
+<ul class="task-list">
+<li>It's time to redraw</li>
+<li>Script asks for something (e.g., style, positions, sizes) that requires processing them</li>
+</ul>
+
+<p>some things that flush style / frame construction:</p>
+
+<ul class="task-list">
+<li>getComputedStyle(element, "").color
+(Maybe Gecko-specific; might only flush style)</li>
+</ul>
+
+<p>some things that flush layout:</p>
+
+<ul class="task-list">
+<li>getComputedStyle(element, "").width</li>
+<li>element.offsetTop</li>
+</ul>
+
+<p>DO NOT DO THIS:</p>
+
+<pre>for (var i = 0; i &lt; n; ++i) {
+  var photo = document.getElementById("photo" + i);
+  var label = document.getElementById("label" + i);
+  label.style.top = photo.offsetHeight + "px";
+}</pre>
+
+<p>These can sometimes be hidden in frameworks.</p>
+
+<h3>
+<a id="user-content-low-level-optimizations" class="anchor" href="#low-level-optimizations" aria-hidden="true"><span class="octicon octicon-link"></span></a>low-level optimizations</h3>
+
+<p>TODO: Is this even a good section title?</p>
+
+<p>TODO: better algorithms, better parallelism (e.g., GPU)</p>
+
+<p>TODO: figure out how I want to talk about graphics acceleration (e.g., if it fits in this structure).  Talk about:</p>
+
+<ul class="task-list">
+<li>using capabilities of the hardware</li>
+<li>doing drawing operations to a surface using its capabilities at some level of abstraction</li>
+<li>caching (surfaces, patterns, etc.)</li>
+</ul>
+
+<h2>
+<a id="user-content-further-material" class="anchor" href="#further-material" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further material</h2>
+
+<p>Since I haven't made much progress on writing this so far, it's worth noting that one of my main sources of the content above is a talk I gave at SXSW on 2012-03-11 into written form.  This talk was /Fast CSS: How Browsers Lay Out Web Pages/: <a href="http://dbaron.org/talks/2012-03-11-sxsw/slide-1.xhtml">slideshow</a>, <a href="http://dbaron.org/talks/2012-03-11-sxsw/master.xhtml">all slides</a>, <a href="http://audio.sxsw.com/2012/podcasts/11-ACC-Fast_CSS_How_Browser_Layout.mp3">audio (MP3)</a>, <a href="http://schedule.sxsw.com/2012/events/event_IAP12909">Session page</a>, <a href="http://lanyrd.com/2012/sxsw-interactive/spmbt/">Lanyrd page</a>.</p>
+</article>
+  </div>
+
+
+        </div>
+  </body>
+</html>
+
