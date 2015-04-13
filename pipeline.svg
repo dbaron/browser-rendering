@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/css" href="slides.css" ?>
 <svg class="pipeline" xmlns="http://www.w3.org/2000/svg" style="background: transparent; display:block; height: 100%; width: 100%; font-size: 36px; stroke-width: 5px;" preserveAspectRatio="xMidYMin meet"
      viewBox="-200 0 1750 550">
-	<g marker-end="url(slides-res.svg#Arrowhead)" stroke="black" stroke-width="5px" fill="none">
+	<g marker-end="url(resources.svg#Arrowhead)" stroke="black" stroke-width="5px" fill="none">
 		<line x1="250" y1="100" x2="433" y2="100" /> <!-- Markup parse Content -->
 		<line x1="650" y1="100" x2="883" y2="100" /> <!-- Content construct Frames -->
 		<line x1="1150" y1="100" x2="1358" y2="100" /> <!-- Frames paint Layers -->

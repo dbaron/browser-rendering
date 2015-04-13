@@ -50,7 +50,7 @@
 	<ellipse cx="1200" cy="900" rx="3.5em" ry="0.8em" fill="yellow" stroke="black" />
 	<text x="1200" y="900" text-anchor="middle" dominant-baseline="middle">"This..."</text>
 
-	<g marker-start="url(slides-res.svg#StartArrowhead)" marker-end="url(slides-res.svg#Arrowhead)" color="black" stroke="currentColor" stroke-width="15" fill="none">
+	<g marker-start="url(resources.svg#StartArrowhead)" marker-end="url(resources.svg#Arrowhead)" color="black" stroke="currentColor" stroke-width="15" fill="none">
 		<path opacity="0.5" d="M 1730 -100 C 1700 -100 1100 -100 940 40" />
 		<path opacity="0.5" d="M 1820 50 L 960 100" />
 		<path opacity="0.5" d="M 1820 200 C 1700 200 1000 200 940 160" />
