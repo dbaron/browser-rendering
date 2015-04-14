@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/css" href="slides.css" ?>
+<?xml-stylesheet type="text/css" href="pipeline.css" ?>
 <svg class="pipeline" xmlns="http://www.w3.org/2000/svg" style="background: transparent; display:block; height: 100%; width: 100%; font-size: 36px; stroke-width: 5px;" preserveAspectRatio="xMidYMin meet"
      viewBox="-200 0 1750 550">
 	<g marker-end="url(resources.svg#Arrowhead)" stroke="black" stroke-width="5px" fill="none">

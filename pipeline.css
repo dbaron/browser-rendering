@@ -1,0 +1,30 @@
+@import url(sil-fonts.css);
+@import url(vera-fonts.css);
+
+:root { font-family: "Gentium Basic", serif; font-size-adjust: 0.4541;
+       background: white; color: black; }
+
+.pipeline .resource {
+  stroke: black;
+  fill: aqua;
+}
+
+.pipeline .algorithm {
+  stroke: black;
+  fill: yellow;
+}
+
+.pipeline .api {
+  stroke: black;
+  fill: lime;
+}
+
+.pipeline .object {
+  stroke: black;
+  fill: white;
+}
+
+.pipeline .data {
+  stroke: black;
+  fill: fuchsia;
+}

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/css" href="slides.css" ?>
+<?xml-stylesheet type="text/css" href="pipeline.css" ?>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:block; height: 100%; width: 100%; font-size: 50px; font-weight: bold; stroke-width: 5px;" preserveAspectRatio="xMidYMin meet"
      viewBox="0 -200 1650 500">
 	<rect x="0" y="0" width="1500" height="1000" fill="white" />
