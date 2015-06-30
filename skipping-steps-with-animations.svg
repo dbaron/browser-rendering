@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="pipeline.css" ?>
+<svg xmlns="http://www.w3.org/2000/svg" style="background: transparent; display:block; height: 100%; width: 100%; font-size: 50px; font-weight: bold; stroke-width: 5px;" preserveAspectRatio="xMidYMin meet"
+     viewBox="0 -200 2050 650">
+	<rect x="25" y="100" width="250" height="100" fill="fuchsia" stroke="black" />
+	<text x="150" y="150" text-anchor="middle" dominant-baseline="middle">Content</text>
+
+	<rect x="350" y="75" width="300" height="150" fill="yellow" stroke="black" />
+	<text x="500" y="120" text-anchor="middle" dominant-baseline="middle">Match</text>
+	<text x="500" y="180" text-anchor="middle" dominant-baseline="middle">selectors</text>
+
+	<rect x="425" y="275" width="300" height="150" fill="yellow" stroke="black" />
+	<text x="575" y="320" text-anchor="middle" dominant-baseline="middle">(most)</text>
+	<text x="575" y="380" text-anchor="middle" dominant-baseline="middle">Animations</text>
+	<text font-size="0.8em" x="835" y="300" fill="red" text-anchor="start" dominant-baseline="middle">every</text>
+	<text font-size="0.8em" x="835" y="340" fill="red" text-anchor="start" dominant-baseline="middle">tick</text>
+
+	<rect x="725" y="75" width="300" height="150" fill="yellow" stroke="black" />
+	<text x="875" y="120" text-anchor="middle" dominant-baseline="middle">Compute</text>
+	<text x="875" y="180" text-anchor="middle" dominant-baseline="middle">style</text>
+
+	<rect x="1100" y="75" width="300" height="150" fill="yellow" stroke="black" />
+	<text x="1250" y="120" text-anchor="middle" dominant-baseline="middle">Construct</text>
+	<text x="1250" y="180" text-anchor="middle" dominant-baseline="middle">frames</text>
+
+	<rect x="1475" y="100" width="250" height="100" fill="yellow" stroke="black" />
+	<text x="1600" y="150" text-anchor="middle" dominant-baseline="middle">Layout</text>
+
+	<rect x="1800" y="100" width="200" height="100" fill="yellow" stroke="black" />
+	<text x="1900" y="150" text-anchor="middle" dominant-baseline="middle">Paint</text>
+
+	<rect x="1700" y="300" width="300" height="100" fill="yellow" stroke="black" />
+	<text x="1850" y="350" text-anchor="middle" dominant-baseline="middle">Composite</text>
+
+	<rect x="1600" y="-195" width="400" height="150" fill="yellow" stroke="black" />
+	<text x="1800" y="-150" text-anchor="middle" dominant-baseline="middle">Special-case</text>
+	<text x="1800" y="-90" text-anchor="middle" dominant-baseline="middle">optimizations</text>
+
+	<defs>
+		<marker id="Arrowhead3" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" orient="auto">
+			<polyline points="0,0 10,5 0,10 2,5" fill="#aaa" />
+		</marker>
+		<marker id="Arrowhead4" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" orient="auto">
+			<polyline points="0,0 10,5 0,10 2,5" fill="#c9c" />
+		</marker>
+		<marker id="Arrowhead5" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" orient="auto">
+			<polyline points="0,0 10,5 0,10 2,5" fill="red" />
+		</marker>
+		<marker id="Arrowhead7" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="strokeWidth" markerWidth="3" markerHeight="3" orient="auto">
+			<polyline points="0,0 10,5 0,10 2,5" fill="#8ac" />
+		</marker>
+	</defs>
+
+	<g marker-end="url(#Arrowhead3)" color="#aaa" stroke="currentColor" stroke-width="10" fill="none">
+		<path d="M 25 -150 C 125 -150 125 0 125 80" />
+	</g>
+
+	<g marker-end="url(#Arrowhead5)" color="red" stroke="currentColor" stroke-width="10" fill="none">
+		<path d="M 1405 150 l 55 0" />
+		<path d="M 1730 150 l 55 0" />
+		<path d="M 725 350 C 830 350 830 350 830 240" />
+		<path d="M 2000 150 C 2050 150 2075 250 1850 250 C 1600 250 1600 350 1685 350" />
+	</g>
+
+	<g marker-end="url(#Arrowhead4)" color="#c9c" stroke="currentColor" stroke-width="10" fill="none">
+		<path d="M 225 90 C 225 -50 400 -50 400 50" />
+		<path d="M 195 90 C 195 -100 400 -140 450 -180" />
+	</g>
+
+	<g marker-end="url(#Arrowhead5)" color="red" stroke="currentColor" stroke-width="10" fill="none">
+		<path d="M 975 70 C 975    0 1175  -25 1175   50" />
+		<path d="M 945 70 C 945  -90 1575  -50 1575   80" />
+		<path d="M 915 70 C 915 -120 1600 -100 1900   80" />
+		<path d="M 885 70 C 885 -130 1400 -120 1585 -120" />
+		<path d="M 855 70 C 855 -130 1275 -120 1375 -180" />
+	</g>
+
+	<g marker-end="url(#Arrowhead7)" color="#8ac" stroke="currentColor" stroke-width="10" fill="none">
+		<path d="M 570 70 C 570 -130 850 -120 950 -180" />
+		<path d="M 655 150 l 55 0" />
+	</g>
+
+	<ellipse cx="120" cy="-50" rx="1.6em" ry="0.8em" fill="lime" stroke="black" />
+	<text x="120" y="-50" text-anchor="middle" dominant-baseline="middle">DOM</text>
+
+
+</svg>
