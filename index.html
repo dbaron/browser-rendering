@@ -11,7 +11,7 @@
   </style>
 </head>
 <body>
-<h1><a id="user-content-how-browser-rendering-works" class="anchor" href="#how-browser-rendering-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How browser rendering works</h1>
+<h1 id="how-browser-rendering-works"><a class="anchor" href="#how-browser-rendering-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How browser rendering works</h1>
 
 <p>by <a href="http://dbaron.org">L. David Baron</a></p>
 
@@ -25,13 +25,11 @@
 
 <p>Before I begin, though, I should make a brief note about my perspective.  I work on Gecko, the layout engine used in Firefox and other <a href="https://www.mozilla.org/">Mozilla</a> products, which is one of the three major layout engines for Web browsers being actively developed today.  The other two are <a href="http://www.webkit.org/">WebKit</a>, which is used in Safari and Chrome, and <a href="http://en.wikipedia.org/wiki/Trident_%28layout_engine%29">Trident</a>, which is used in Microsoft Internet Explorer.  Many of the things I say here apply across layout engines, but quite a few are specific to Gecko, and I don't always know which are which, though I attempt to be clear when I do.</p>
 
-<h2>
-<a id="user-content-the-rendering-pipeline-without-optimization" class="anchor" href="#the-rendering-pipeline-without-optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>The rendering pipeline without optimization</h2>
+<h2 id="the-rendering-pipeline-without-optimization"><a class="anchor" href="#the-rendering-pipeline-without-optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>The rendering pipeline without optimization</h2>
 
 <p><a href="pipeline.svg" target="_blank"><object data="pipeline.svg" style="max-width:100%;"></object></a></p>
 
-<h3>
-<a id="user-content-parsing" class="anchor" href="#parsing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parsing</h3>
+<h3 id="parsing"><a class="anchor" href="#parsing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parsing</h3>
 
 <table border="border" width="100%">
 
@@ -112,22 +110,17 @@
 
 </svg>
 
-<h3>
-<a id="user-content-style-computation" class="anchor" href="#style-computation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style computation</h3>
+<h3 id="style-computation"><a class="anchor" href="#style-computation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style computation</h3>
 
-<h3>
-<a id="user-content-rendering-tree-construction" class="anchor" href="#rendering-tree-construction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rendering tree construction</h3>
+<h3 id="rendering-tree-construction"><a class="anchor" href="#rendering-tree-construction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rendering tree construction</h3>
 
 <p><a href="frame-tree.svg" target="_blank"><object data="frame-tree.svg" style="max-width:100%;"></object></a></p>
 
-<h3>
-<a id="user-content-layout" class="anchor" href="#layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layout</h3>
+<h3 id="layout"><a class="anchor" href="#layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layout</h3>
 
-<h3>
-<a id="user-content-painting" class="anchor" href="#painting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Painting</h3>
+<h3 id="painting"><a class="anchor" href="#painting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Painting</h3>
 
-<h2>
-<a id="user-content-optimizations" class="anchor" href="#optimizations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimizations</h2>
+<h2 id="optimizations"><a class="anchor" href="#optimizations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimizations</h2>
 
 <p>TODO: Unoptimized view of world:  redo everything for each DOM or style change</p>
 
@@ -135,8 +128,7 @@
 
 <p>TODO: optimizations can and do change</p>
 
-<h3>
-<a id="user-content-optimization-skipping-stages-of-the-pipeline" class="anchor" href="#optimization-skipping-stages-of-the-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimization: skipping stages of the pipeline</h3>
+<h3 id="optimization-skipping-stages-of-the-pipeline"><a class="anchor" href="#optimization-skipping-stages-of-the-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimization: skipping stages of the pipeline</h3>
 
 <p><a href="skipping-steps-without-skips.svg" target="_blank"><object data="skipping-steps-without-skips.svg" style="max-width:100%;"></object></a></p>
 
@@ -214,8 +206,7 @@ p:hover { background: yellow }
 
 <p>TODO: write</p>
 
-<h3>
-<a id="user-content-optimization-skipping-part-of-a-stage" class="anchor" href="#optimization-skipping-part-of-a-stage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimization: skipping part of a stage</h3>
+<h3 id="optimization-skipping-part-of-a-stage"><a class="anchor" href="#optimization-skipping-part-of-a-stage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optimization: skipping part of a stage</h3>
 
 <p>TODO: describe stage-specific optimizations</p>
 
@@ -275,8 +266,7 @@ var time = (Date.now() - start);
 &lt;!-- FIXME: better? --&gt;</li>
 </ul>
 
-<h3>
-<a id="user-content-coalescing-multiple-runs-both-general-and-stage-specific" class="anchor" href="#coalescing-multiple-runs-both-general-and-stage-specific" aria-hidden="true"><span class="octicon octicon-link"></span></a>coalescing multiple runs (both general and stage-specific)</h3>
+<h3 id="coalescing-multiple-runs-both-general-and-stage-specific"><a class="anchor" href="#coalescing-multiple-runs-both-general-and-stage-specific" aria-hidden="true"><span class="octicon octicon-link"></span></a>coalescing multiple runs (both general and stage-specific)</h3>
 
 <p><a href="skipping-steps-with-buffers.svg" target="_blank"><object data="skipping-steps-with-buffers.svg" style="max-width:100%;"></object></a></p>
 
@@ -325,14 +315,12 @@ element.parentNode.style.opacity = "0.8";</pre>
 
 <p>These can sometimes be hidden in frameworks.</p>
 
-<h3>
-<a id="user-content-animations" class="anchor" href="#animations" aria-hidden="true"><span class="octicon octicon-link"></span></a>animations</h3>
+<h3 id="animations"><a class="anchor" href="#animations" aria-hidden="true"><span class="octicon octicon-link"></span></a>animations</h3>
 
 <p><a href="skipping-steps-with-animations.svg" target="_blank"><object data="skipping-steps-with-animations.svg" style="max-width:100%;"></object></a></p>
 <p><a href="skipping-steps-with-animations-2.svg" target="_blank"><object data="skipping-steps-with-animations-2.svg" style="max-width:100%;"></object></a></p>
 
-<h3>
-<a id="user-content-low-level-optimizations" class="anchor" href="#low-level-optimizations" aria-hidden="true"><span class="octicon octicon-link"></span></a>low-level optimizations</h3>
+<h3 id="low-level-optimizations"><a class="anchor" href="#low-level-optimizations" aria-hidden="true"><span class="octicon octicon-link"></span></a>low-level optimizations</h3>
 
 <p>TODO: Is this even a good section title?</p>
 
@@ -346,8 +334,7 @@ element.parentNode.style.opacity = "0.8";</pre>
 <li>caching (surfaces, patterns, etc.)</li>
 </ul>
 
-<h2>
-<a id="user-content-further-material" class="anchor" href="#further-material" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further material</h2>
+<h2 id="further-material"><a class="anchor" href="#further-material" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further material</h2>
 
 <p>Since I haven't made much progress on writing this so far, it's worth noting that one of my main sources of the content above is a talk I gave at SXSW on 2012-03-11 into written form.  This talk was /Fast CSS: How Browsers Lay Out Web Pages/: <a href="http://dbaron.org/talks/2012-03-11-sxsw/slide-1.xhtml">slideshow</a>, <a href="http://dbaron.org/talks/2012-03-11-sxsw/master.xhtml">all slides</a>, <a href="http://audio.sxsw.com/2012/podcasts/11-ACC-Fast_CSS_How_Browser_Layout.mp3">audio (MP3)</a>, <a href="http://schedule.sxsw.com/2012/events/event_IAP12909">Session page</a>, <a href="http://lanyrd.com/2012/sxsw-interactive/spmbt/">Lanyrd page</a>.</p>
 </article>
