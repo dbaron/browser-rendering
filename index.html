@@ -27,9 +27,30 @@
 
 <h2 id="the-rendering-pipeline-without-optimization"><a class="anchor" href="#the-rendering-pipeline-without-optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>The rendering pipeline without optimization</h2>
 
+<p>
+  So let's start by walking through the parts of the rendering pipeline.
+  This diagram illustrates the rendering pipeline as a whole,
+  but let's go through it piece by piece.
+</p>
+
 <p><a href="pipeline.svg" target="_blank"><object data="pipeline.svg" style="max-width:100%;"></object></a></p>
 
 <h3 id="parsing"><a class="anchor" href="#parsing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parsing</h3>
+
+<p>
+  HTML is a serialization of a tree structure.
+  The goal of parsing is to convert the HTML file's text
+  back into that tree structure.
+  This tree, which we call the DOM tree or the content tree,
+  stays in memory as long as we display the page.
+  It's one of the most important data structures in the rendering pipeline,
+  and it's the one that script interacts with directly.
+</p>
+
+<p>
+  Let's start with a simple example of an HTML document that represents
+  a particular tree structure:
+</p>
 
 <table border="border" width="100%">
 
